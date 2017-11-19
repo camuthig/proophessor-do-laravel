@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "90664701e960efd94be3db8524d2cf8b",
+    "content-hash": "36ca9d4f0c04d93338598fd2f7e59b4a",
     "packages": [
         {
             "name": "beberlei/assert",
@@ -60,6 +60,58 @@
                 "validation"
             ],
             "time": "2017-11-13T18:35:09+00:00"
+        },
+        {
+            "name": "camuthig/event-store-laravel-package",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/camuthig/event-store-laravel-package.git",
+                "reference": "8c9a808ba1ed9b3f64ff8dba2047db397b4de951"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/camuthig/event-store-laravel-package/zipball/8c9a808ba1ed9b3f64ff8dba2047db397b4de951",
+                "reference": "8c9a808ba1ed9b3f64ff8dba2047db397b4de951",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.1",
+                "prooph/event-store": "^7.2",
+                "prooph/pdo-event-store": "^1.0"
+            },
+            "require-dev": {
+                "laravel/framework": "5.5.*",
+                "prooph/event-sourcing": "^5.2"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Camuthig\\EventStore\\Package\\EventStoreServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Camuthig\\EventStore\\Package\\": "src"
+                }
+            },
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Chris Muthig",
+                    "email": "camuthig@gmail.com"
+                }
+            ],
+            "description": "A package for using the event store in a Laravel project",
+            "support": {
+                "source": "https://github.com/camuthig/event-store-laravel-package/tree/master",
+                "issues": "https://github.com/camuthig/event-store-laravel-package/issues"
+            },
+            "time": "2017-11-19T01:06:06+00:00"
         },
         {
             "name": "camuthig/service-bus-laravel-package",
@@ -800,6 +852,72 @@
             "time": "2017-08-06T17:41:04+00:00"
         },
         {
+            "name": "marc-mabe/php-enum",
+            "version": "v3.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/marc-mabe/php-enum.git",
+                "reference": "e756ea3f8e938f9197a756ad32d797b5455d316d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/marc-mabe/php-enum/zipball/e756ea3f8e938f9197a756ad32d797b5455d316d",
+                "reference": "e756ea3f8e938f9197a756ad32d797b5455d316d",
+                "shasum": ""
+            },
+            "require": {
+                "ext-reflection": "*",
+                "php": ">=5.6"
+            },
+            "require-dev": {
+                "lstrojny/functional-php": "1.2.* || 1.0.*",
+                "phpbench/phpbench": "@dev",
+                "phpunit/phpunit": "^5.7 || ^6.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.0-dev",
+                    "dev-2.x": "2.3-dev",
+                    "dev-1.x": "1.3-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "MabeEnum\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Marc Bennewitz",
+                    "email": "dev@mabe.berlin",
+                    "homepage": "http://mabe.berlin/",
+                    "role": "Lead"
+                }
+            ],
+            "description": "Simple and fast implementation of enumerations with native PHP>=5.6",
+            "homepage": "https://github.com/marc-mabe/php-enum",
+            "keywords": [
+                "enum",
+                "enum-map",
+                "enum-set",
+                "enumeration",
+                "enumerator",
+                "enummap",
+                "enumset",
+                "map",
+                "set",
+                "type",
+                "type-hint",
+                "typehint"
+            ],
+            "time": "2017-11-05T14:47:17+00:00"
+        },
+        {
             "name": "monolog/monolog",
             "version": "1.23.0",
             "source": {
@@ -1130,6 +1248,148 @@
                 "prooph"
             ],
             "time": "2017-03-30T07:16:18+00:00"
+        },
+        {
+            "name": "prooph/event-store",
+            "version": "v7.3.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/prooph/event-store.git",
+                "reference": "4b50e30f0199b06b8b3e68926f9c73e3386f2752"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/prooph/event-store/zipball/4b50e30f0199b06b8b3e68926f9c73e3386f2752",
+                "reference": "4b50e30f0199b06b8b3e68926f9c73e3386f2752",
+                "shasum": ""
+            },
+            "require": {
+                "marc-mabe/php-enum": "^2.3.1 || ^3.0.0",
+                "php": "^7.1",
+                "prooph/common": "^4.1.0"
+            },
+            "conflict": {
+                "sandrokeil/interop-config": "<2.0.1"
+            },
+            "require-dev": {
+                "malukenho/docheader": "^0.1.4",
+                "phpspec/prophecy": "^1.7",
+                "phpunit/phpunit": "^6.0",
+                "prooph/bookdown-template": "^0.2.3",
+                "prooph/php-cs-fixer-config": "^0.1.1",
+                "psr/container": "^1.0",
+                "sandrokeil/interop-config": "^2.0.1",
+                "satooshi/php-coveralls": "^1.0"
+            },
+            "suggest": {
+                "prooph/event-sourcing": "Basic functionality for event sourced aggregates",
+                "prooph/pdo-event-store": "For usage with MySQL or Postgres as event store",
+                "prooph/service-bus": "Message bus facade to connect the event store with messaging systems",
+                "psr/container": "^1.0 for usage of provided factories",
+                "sandrokeil/interop-config": "For usage of provided factories"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "7.3-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Prooph\\EventStore\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Sascha-Oliver Prolic",
+                    "email": "saschaprolic@googlemail.com"
+                },
+                {
+                    "name": "Alexander Miertsch",
+                    "email": "contact@prooph.de",
+                    "homepage": "http://www.prooph.de"
+                }
+            ],
+            "description": "PHP EventStore Implementation",
+            "homepage": "http://getprooph.org/",
+            "keywords": [
+                "EventSourcing",
+                "EventStore",
+                "ddd",
+                "prooph"
+            ],
+            "time": "2017-11-18T14:16:55+00:00"
+        },
+        {
+            "name": "prooph/pdo-event-store",
+            "version": "v1.5.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/prooph/pdo-event-store.git",
+                "reference": "2073b75f37822825459b153aeefa1ae2f59fc041"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/prooph/pdo-event-store/zipball/2073b75f37822825459b153aeefa1ae2f59fc041",
+                "reference": "2073b75f37822825459b153aeefa1ae2f59fc041",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.1",
+                "prooph/event-store": "^7.2"
+            },
+            "conflict": {
+                "sandrokeil/interop-config": "<2.0.1"
+            },
+            "require-dev": {
+                "malukenho/docheader": "^0.1.4",
+                "phpspec/prophecy": "^1.7",
+                "phpunit/phpunit": "^6.0",
+                "prooph/bookdown-template": "^0.2.3",
+                "prooph/php-cs-fixer-config": "^0.1.1",
+                "psr/container": "^1.0",
+                "sandrokeil/interop-config": "^2.0.1",
+                "satooshi/php-coveralls": "^1.0"
+            },
+            "suggest": {
+                "ext-pdo_mysql": "For usage with MySQL",
+                "ext-pdo_pgsql": "For usage with PostgreSQL",
+                "psr/container": "^1.0 for usage of provided factories",
+                "sandrokeil/interop-config": "^2.0.1 for usage of provided factories"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.5-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Prooph\\EventStore\\Pdo\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Sascha-Oliver Prolic",
+                    "email": "saschaprolic@googlemail.com"
+                },
+                {
+                    "name": "Alexander Miertsch",
+                    "email": "contact@prooph.de",
+                    "homepage": "http://www.prooph.de"
+                }
+            ],
+            "description": "Prooph PDO EventStore",
+            "homepage": "http://getprooph.org/",
+            "time": "2017-09-20T11:54:49+00:00"
         },
         {
             "name": "prooph/service-bus",
@@ -4131,6 +4391,7 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
+        "camuthig/event-store-laravel-package": 20,
         "camuthig/service-bus-laravel-package": 20
     },
     "prefer-stable": false,

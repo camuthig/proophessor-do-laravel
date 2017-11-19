@@ -16,6 +16,7 @@
     ],
     "require": {
         "php": ">=7.1.0",
+        "camuthig/event-store-laravel-package": "dev-master",
         "camuthig/service-bus-laravel-package": "dev-master",
         "fideloper/proxy": "~3.3",
         "laravel/framework": "5.5.*",
