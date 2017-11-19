@@ -28,11 +28,11 @@ class ProophessorDoServiceProvider extends ServiceProvider
             }
 
             return DriverManager::getConnection([
-                'dbname'   => config(sprintf('database.%s.database'), $default),
-                'user'     => config(sprintf('database.%s.username'), $default),
-                'password' => config(sprintf('database.%s.password'), $default),
-                'host'     => config(sprintf('database.%s.host'), $default),
-                'port'     => config(sprintf('database.%s.port'), $default),
+                'dbname'   => config(sprintf('database.connections.%s.database', $default)),
+                'user'     => config(sprintf('database.connections.%s.username', $default)),
+                'password' => config(sprintf('database.connections.%s.password', $default)),
+                'host'     => config(sprintf('database.connections.%s.host', $default)),
+                'port'     => config(sprintf('database.connections.%s.port', $default)),
                 'driver'   => $driver,
             ]);
         });
