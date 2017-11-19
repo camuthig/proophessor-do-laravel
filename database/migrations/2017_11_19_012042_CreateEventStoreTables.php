@@ -19,7 +19,7 @@ class CreateEventStoreTables extends Migration
             $table->string('real_stream_name', 150);
             $table->string('stream_name', 41);
             $table->json('metadata');
-            $table->string('category', 150);
+            $table->string('category', 150)->nullable();
 
             $table->unique('real_stream_name', 'ix_rsn');
             $table->index('category', 'ix_cat');
