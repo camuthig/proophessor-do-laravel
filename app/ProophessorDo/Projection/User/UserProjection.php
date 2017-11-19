@@ -13,7 +13,7 @@ declare(strict_types=1);
 namespace Prooph\ProophessorDo\Projection\User;
 
 
-use Prooph\Bundle\EventStore\Projection\ReadModelProjection;
+use Camuthig\EventStore\Package\Projection\ReadModelProjection;
 use Prooph\EventStore\Projection\ReadModelProjector;
 use Prooph\ProophessorDo\Model\Todo\Event\TodoWasMarkedAsDone;
 use Prooph\ProophessorDo\Model\Todo\Event\TodoWasMarkedAsExpired;

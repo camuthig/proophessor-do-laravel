@@ -12,7 +12,7 @@ declare(strict_types=1);
 
 namespace Prooph\ProophessorDo\Projection\Todo;
 
-use Prooph\Bundle\EventStore\Projection\ReadModelProjection;
+use Camuthig\EventStore\Package\Projection\ReadModelProjection;
 use Prooph\EventStore\Projection\ReadModelProjector;
 use Prooph\ProophessorDo\Model\Todo\Event\ReminderWasAddedToTodo;
 use Prooph\ProophessorDo\Model\Todo\Event\TodoAssigneeWasReminded;
