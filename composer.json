@@ -4,8 +4,19 @@
     "keywords": ["prooph", "proophessor-do", "laravel"],
     "license": "BSD-3",
     "type": "project",
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/camuthig/event-store-laravel-package"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/camuthig/service-bus-laravel-package"
+        }
+    ],
     "require": {
         "php": ">=7.1.0",
+        "camuthig/service-bus-laravel-package": "dev-master",
         "fideloper/proxy": "~3.3",
         "laravel/framework": "5.5.*",
         "laravel/tinker": "~1.0"

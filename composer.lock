@@ -4,8 +4,122 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "5eba86da256ddeb8084c32d3d10e18d3",
+    "content-hash": "90664701e960efd94be3db8524d2cf8b",
     "packages": [
+        {
+            "name": "beberlei/assert",
+            "version": "v2.7.11",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/beberlei/assert.git",
+                "reference": "53991547d6f0b8c81354fb2d098dcb71e81678cb"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/beberlei/assert/zipball/53991547d6f0b8c81354fb2d098dcb71e81678cb",
+                "reference": "53991547d6f0b8c81354fb2d098dcb71e81678cb",
+                "shasum": ""
+            },
+            "require": {
+                "ext-mbstring": "*",
+                "php": ">=5.3"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^2.1.1",
+                "phpunit/phpunit": "^4.8.35|^5.7"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Assert\\": "lib/Assert"
+                },
+                "files": [
+                    "lib/Assert/functions.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-2-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Benjamin Eberlei",
+                    "email": "kontakt@beberlei.de",
+                    "role": "Lead Developer"
+                },
+                {
+                    "name": "Richard Quadling",
+                    "email": "rquadling@gmail.com",
+                    "role": "Collaborator"
+                }
+            ],
+            "description": "Thin assertion library for input validation in business models.",
+            "keywords": [
+                "assert",
+                "assertion",
+                "validation"
+            ],
+            "time": "2017-11-13T18:35:09+00:00"
+        },
+        {
+            "name": "camuthig/service-bus-laravel-package",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/camuthig/service-bus-laravel-package.git",
+                "reference": "e9ced6625e1644c3698a5d8cbb7a957103356803"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/camuthig/service-bus-laravel-package/zipball/e9ced6625e1644c3698a5d8cbb7a957103356803",
+                "reference": "e9ced6625e1644c3698a5d8cbb7a957103356803",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.1",
+                "prooph/service-bus": "^6.1",
+                "symfony/stopwatch": "^3.3"
+            },
+            "require-dev": {
+                "barryvdh/laravel-debugbar": "^3.1",
+                "laravel/framework": "5.5.*",
+                "orchestra/testbench": "^3.5",
+                "react/promise": "^2.5"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Camuthig\\ServiceBus\\Package\\ServiceBusServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Camuthig\\ServiceBus\\Package\\": "src"
+                }
+            },
+            "autoload-dev": {
+                "psr-4": {
+                    "Camuthig\\ServiceBus\\Package\\Test\\": "tests"
+                }
+            },
+            "license": [
+                "BSD-3"
+            ],
+            "authors": [
+                {
+                    "name": "Chris Muthig",
+                    "email": "camuthig@gmail.com"
+                }
+            ],
+            "description": "A package for leveraging the Prooph Service Bus in a Laravel project",
+            "support": {
+                "source": "https://github.com/camuthig/service-bus-laravel-package/tree/master",
+                "issues": "https://github.com/camuthig/service-bus-laravel-package/issues"
+            },
+            "time": "2017-11-18T23:50:32+00:00"
+        },
         {
             "name": "dnoegel/php-xdg-base-dir",
             "version": "0.1",
@@ -958,6 +1072,135 @@
                 "random"
             ],
             "time": "2017-09-27T21:40:39+00:00"
+        },
+        {
+            "name": "prooph/common",
+            "version": "v4.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/prooph/common.git",
+                "reference": "258720237856778232b72155983f34545e487d63"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/prooph/common/zipball/258720237856778232b72155983f34545e487d63",
+                "reference": "258720237856778232b72155983f34545e487d63",
+                "shasum": ""
+            },
+            "require": {
+                "beberlei/assert": "^2.7.1",
+                "php": "^7.1.0",
+                "ramsey/uuid": "^3.6.0"
+            },
+            "conflict": {
+                "php": "7.1.3"
+            },
+            "require-dev": {
+                "malukenho/docheader": "^0.1.4",
+                "phpunit/phpunit": "^6.0",
+                "prooph/bookdown-template": "^0.2.3",
+                "prooph/php-cs-fixer-config": "^0.1.1",
+                "satooshi/php-coveralls": "^1.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Prooph\\Common\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Sascha-Oliver Prolic",
+                    "email": "saschaprolic@googlemail.com"
+                },
+                {
+                    "name": "Alexander Miertsch",
+                    "email": "contact@prooph.de",
+                    "homepage": "http://www.prooph.de"
+                }
+            ],
+            "description": "Common classes used across prooph packages",
+            "homepage": "http://getprooph.org/",
+            "keywords": [
+                "common",
+                "prooph"
+            ],
+            "time": "2017-03-30T07:16:18+00:00"
+        },
+        {
+            "name": "prooph/service-bus",
+            "version": "v6.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/prooph/service-bus.git",
+                "reference": "6a98854fc83e0188e5a1a9d4b1e0efac09cfd46f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/prooph/service-bus/zipball/6a98854fc83e0188e5a1a9d4b1e0efac09cfd46f",
+                "reference": "6a98854fc83e0188e5a1a9d4b1e0efac09cfd46f",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.1",
+                "prooph/common": "^4.0.0"
+            },
+            "conflict": {
+                "sandrokeil/interop-config": "<2.0.1"
+            },
+            "require-dev": {
+                "malukenho/docheader": "^0.1.4",
+                "phpspec/prophecy": "^1.7",
+                "phpunit/phpunit": "^6.0",
+                "prooph/bookdown-template": "^0.2.3",
+                "prooph/php-cs-fixer-config": "^0.1.1",
+                "psr/container": "^1.0",
+                "react/promise": "^2.4.1",
+                "sandrokeil/interop-config": "^2.0.1",
+                "satooshi/php-coveralls": "^1.0"
+            },
+            "suggest": {
+                "prooph/event-store-bus-bridge": "Let the EventBus dispatch persisted DomainEvents",
+                "prooph/service-bus-zfc-rbac-bridge": "Use ZfcRbac as authorization service for route and finalize guard",
+                "psr/container": "^1.0 for usage of provided factories",
+                "react/promise": "^2.4.1 for usage with provided QueryBus",
+                "sandrokeil/interop-config": "For usage of provided factories",
+                "zendframework/zend-servicemanager": "Use Zend ServiceManager to lazy load your handlers and listeners"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Prooph\\ServiceBus\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Sascha-Oliver Prolic",
+                    "email": "saschaprolic@googlemail.com"
+                },
+                {
+                    "name": "Alexander Miertsch",
+                    "email": "contact@prooph.de",
+                    "homepage": "http://www.prooph.de"
+                }
+            ],
+            "description": "PHP Enterprise Service Bus Implementation supporting CQRS and DDD",
+            "homepage": "http://getprooph.org/",
+            "keywords": [
+                "cqrs",
+                "ddd",
+                "messaging",
+                "prooph"
+            ],
+            "time": "2017-10-23T14:00:18+00:00"
         },
         {
             "name": "psr/container",
@@ -1928,6 +2171,55 @@
             "time": "2017-11-07T14:16:22+00:00"
         },
         {
+            "name": "symfony/stopwatch",
+            "version": "v3.3.13",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/stopwatch.git",
+                "reference": "1e93c3139ef6c799831fe03efd0fb1c7aecb3365"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/stopwatch/zipball/1e93c3139ef6c799831fe03efd0fb1c7aecb3365",
+                "reference": "1e93c3139ef6c799831fe03efd0fb1c7aecb3365",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^5.5.9|>=7.0.8"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.3-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Component\\Stopwatch\\": ""
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony Stopwatch Component",
+            "homepage": "https://symfony.com",
+            "time": "2017-11-10T19:02:53+00:00"
+        },
+        {
             "name": "symfony/translation",
             "version": "v3.3.13",
             "source": {
@@ -2161,32 +2453,32 @@
     "packages-dev": [
         {
             "name": "doctrine/instantiator",
-            "version": "1.0.5",
+            "version": "1.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/instantiator.git",
-                "reference": "8e884e78f9f0eb1329e445619e04456e64d8051d"
+                "reference": "185b8868aa9bf7159f5f953ed5afb2d7fcdc3bda"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/instantiator/zipball/8e884e78f9f0eb1329e445619e04456e64d8051d",
-                "reference": "8e884e78f9f0eb1329e445619e04456e64d8051d",
+                "url": "https://api.github.com/repos/doctrine/instantiator/zipball/185b8868aa9bf7159f5f953ed5afb2d7fcdc3bda",
+                "reference": "185b8868aa9bf7159f5f953ed5afb2d7fcdc3bda",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.3,<8.0-DEV"
+                "php": "^7.1"
             },
             "require-dev": {
                 "athletic/athletic": "~0.1.8",
                 "ext-pdo": "*",
                 "ext-phar": "*",
-                "phpunit/phpunit": "~4.0",
-                "squizlabs/php_codesniffer": "~2.0"
+                "phpunit/phpunit": "^6.2.3",
+                "squizlabs/php_codesniffer": "^3.0.2"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.0.x-dev"
+                    "dev-master": "1.2.x-dev"
                 }
             },
             "autoload": {
@@ -2211,7 +2503,7 @@
                 "constructor",
                 "instantiate"
             ],
-            "time": "2015-06-14T21:17:01+00:00"
+            "time": "2017-07-22T11:58:36+00:00"
         },
         {
             "name": "filp/whoops",
@@ -3838,11 +4130,13 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "camuthig/service-bus-laravel-package": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
-        "php": ">=7.0.0"
+        "php": ">=7.1.0"
     },
     "platform-dev": []
 }
