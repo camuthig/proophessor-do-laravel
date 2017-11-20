@@ -14,7 +14,7 @@
 Route::get('/', [
     'as' => 'home',
     function () {
-        return view('default/index', [
+        return view('proophessor_do/index', [
             'sidebar_right' => ''
         ]);
     }

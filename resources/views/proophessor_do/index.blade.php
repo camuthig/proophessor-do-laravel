@@ -1,4 +1,4 @@
-@extends('default.base')
+@extends('proophessor_do.base')
 
 @section('content')
     <div class="jumbotron">
