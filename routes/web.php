@@ -11,6 +11,11 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [
+    'as' => 'home',
+    function () {
+        return view('default/index', [
+            'sidebar_right' => ''
+        ]);
+    }
+]);
