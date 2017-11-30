@@ -12,7 +12,7 @@
     </div>
     <div class="btn-group pull-right">
         <input type="submit" class="btn btn-success" name="ok" value="register user" onclick="{onSubmit}">
-        <a href="<?php echo $this->url('page::user-list') ?>" class="btn btn-default">cancel</a>
+        <a href="{{ route('page::user-list') }}" class="btn btn-default">cancel</a>
     </div>
 </form>
 <script type="text/javascript">
@@ -38,14 +38,14 @@
             var userId = UUID();
 
             if (self.nameIsValid && self.emailIsValid) {
-                $.postJSON('{{  path('command::register-user') }}', {
+                $.postJSON('{{  route('command::register-user') }}', {
                     user_id : userId,
                     name : self.username.value,
                     email : self.email.value
                 }).then(
                     function () {
                         window.location.href =
-                            '{{  path('page::user-todo-list', {'userId': '00000000-0000-0000-0000-000000000000'}) }}'
+                            '{{  route('page::user-todo-list', ['userId' => '00000000-0000-0000-0000-000000000000']) }}'
                                 .replace('00000000-0000-0000-0000-000000000000', userId);
                     },
                     $.failNotify

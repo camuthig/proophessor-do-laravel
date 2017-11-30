@@ -12,3 +12,11 @@ use Illuminate\Http\Request;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+
+Route::middleware(['command_name'])->group(function () {
+    Route::post('/commands/register-user', [
+        'as' => 'command::register-user',
+        'uses' => 'ApiCommandController@postAction'
+    ]);
+});
+

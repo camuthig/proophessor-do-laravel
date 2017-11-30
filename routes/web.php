@@ -12,10 +12,29 @@
 */
 
 Route::get('/', [
-    'as' => 'home',
+    'as' => 'page::home',
     function () {
         return view('proophessor_do/index', [
             'sidebar_right' => ''
         ]);
+    }
+]);
+
+Route::get('/user-list', [
+    'as' => 'page::user-list',
+    'uses' => 'UserListController@get',
+]);
+
+Route::get('/user-registration', [
+    'as' => 'page::user-registration-form',
+    function () {
+        return view('proophessor_do/user-registration-form');
+    }
+]);
+
+Route::get('/user-todo-list/{userId}', [
+    'as' => 'page::user-todo-list',
+    function () {
+        // @TODO Implement me
     }
 ]);

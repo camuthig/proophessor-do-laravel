@@ -2,7 +2,11 @@
 
 namespace App\Providers;
 
+use App\Http\View\RiotTag;
+use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
+use Prooph\Common\Messaging\FQCNMessageFactory;
+use Prooph\Common\Messaging\MessageFactory;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -13,7 +17,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        Blade::directive('riotTag', function ($tag) {
+            return (new RiotTag)->render($tag);
+        });
     }
 
     /**
@@ -23,6 +29,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $this->app->bind(MessageFactory::class, FQCNMessageFactory::class);
     }
+
+
 }

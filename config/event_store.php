@@ -107,7 +107,7 @@ return [
     */
     'projection_managers' => [
         'todo_projection_manager' => [
-            'store' => 'mysql',
+            'store' => 'default',
             'projections' => [
                 'user_projection' => [
                     'read_model' => \Prooph\ProophessorDo\Projection\User\UserReadModel::class,
@@ -121,16 +121,6 @@ return [
                     'read_model' => \Prooph\ProophessorDo\Projection\Todo\TodoReminderReadModel::class,
                     'projection' => \Prooph\ProophessorDo\Projection\Todo\TodoReminderProjection::class,
                 ]
-            ]
-        ],
-        'maria_db' => [
-            'store' => 'maria_db',
-            'projections' => [
-            ]
-        ],
-        'postgres' => [
-            'store' => 'postgres',
-            'projections' => [
             ]
         ]
     ]

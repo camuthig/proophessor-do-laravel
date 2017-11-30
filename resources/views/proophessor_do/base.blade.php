@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>@section('title')proophessor-do-laravel!@show</title>
+    <title>@yield('title', 'proophessor-do-laravel!')</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     @section('stylesheets')
         <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet" />
@@ -20,7 +20,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="{{ route('home') }}">proophessor-do-laravel</a>
+            <a class="navbar-brand" href="{{ route('page::home') }}">proophessor-do-laravel</a>
         </div>
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
@@ -34,10 +34,10 @@
         <div id="sidebar-left" data-spy="affix" data-offset-top="60">
             <ul class="sidebar-nav">
                 <li>
-                    <a href="{{ route('home') }}">Welcome Screen</a>
+                    <a href="{{ route('page::home') }}">Welcome Screen</a>
                 </li>
                 <li>
-                    <a href="{{ route('home') }}">Manage Users</a>
+                    <a href="{{ route('page::user-list') }}">Manage Users</a>
                 </li>
                 <li>
                     <a href="#/create">Manage Todos</a>
@@ -72,7 +72,6 @@
         <script src="{{ asset('js/riot.min.js') }}"></script>
         <script src="{{ asset('js/prooph.riot.app.js') }}"></script>
     @show
-    @section('page_js')
-    @endsection
+    @yield('page_js')
 </body>
 </html>
