@@ -45,7 +45,7 @@ return [
     'stores' => [
         'default' => 'mysql',
         'mysql' => [
-            'persistence_strategy' => \Prooph\EventStore\Pdo\PersistenceStrategy\MySqlAggregateStreamStrategy::class,
+            'persistence_strategy' => \Prooph\EventStore\Pdo\PersistenceStrategy\MySqlSingleStreamStrategy::class,
         ],
         'maria_db' => [
             'persistence_strategy' => \Prooph\EventStore\Pdo\PersistenceStrategy\MariaDbAggregateStreamStrategy::class,
