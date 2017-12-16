@@ -1,5 +1,7 @@
 <?php
 /**
+ * This class has been taken from the ProophessorDo Symfony example and altered slightly to work with Laravel.
+ *
  * prooph (http://getprooph.org/)
  *
  * @see       https://github.com/prooph/proophessor-do-symfony for the canonical source repository
