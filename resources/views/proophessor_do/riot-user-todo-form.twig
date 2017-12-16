@@ -28,7 +28,7 @@
                 var todoId = UUID();
 
                 $.postJSON(
-                    '{{ path('command::post-todo') }}',
+                    '{{ route('command::post-todo') }}',
                     {
                         assignee_id : self.user_id.value,
                         todo_id : todoId,
@@ -37,7 +37,7 @@
                 ).then(
                     function () {
                         window.location.href =
-                            '{{ path('page::user-todo-list', {'userId': '00000000-0000-0000-0000-000000000000'}) }}'
+                            '{{ route('page::user-todo-list', {'userId': '00000000-0000-0000-0000-000000000000'}) }}'
                                 .replace('00000000-0000-0000-0000-000000000000', self.user_id.value);
                     },
                     $.failNotify

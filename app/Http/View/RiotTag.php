@@ -7,41 +7,84 @@
  * @license   https://github.com/prooph/proophessor-do-symfony/blob/master/LICENSE.md New BSD License
  */
 
-declare(strict_types=1);
+declare (strict_types = 1);
 
 namespace App\Http\View;
 
-use Illuminate\Support\Facades\Blade;
-use Illuminate\View\View;
-
-class RiotTag
+class RiotTag extends \Twig_Extension
 {
     private $search = ['"', PHP_EOL];
 
     private $replace = ['\"', ''];
 
-    public function render(string $view)
+    public function getFunctions()
     {
-        $view = trim($view, '\'');
+        return [
+            new \Twig_SimpleFunction(
+                'riotTag',
+                [$this, 'render'],
+                [
+                    'is_safe' => ['html'],
+                    'needs_environment' => true // Tell twig we need the environment
+                ]
+            ),
+        ];
+    }
 
-        $tagName   = $this->getTagNameFromView($view);
-        $component = view('proophessor_do/riot-user-form')->render();
+    /**
+     * {@inheritdoc}
+     */
+    public function getName()
+    {
+        return 'prooph:riot-tag';
+    }
 
-        $jsFunction = $this->extractJsFunction($component, $view);
-        $component = $this->removeJsFromTemplate($component, $view);
+    public function render(\Twig_Environment $twig, $tagName, $template = null, $jsFunction = null)
+    {
+        if ($template === null) {
+            $template = $tagName;
+            $tagName = $this->getTagNameFromTemplate($template);
+        }
+
+        $this->assertTagName($tagName);
+        $this->assertTemplate($template);
+
+        $template = $twig->render($template);
+
+        if ($jsFunction === null) {
+            $jsFunction = $this->extractJsFunction($template, $tagName);
+            $template = $this->removeJsFromTemplate($template, $tagName);
+        }
 
         return 'riot.tag("' . $tagName . '", "' . str_replace($this->search, $this->replace,
-                                                              $component) . '", ' . $jsFunction . ');';
+            $template) . '", ' . $jsFunction . ');';
     }
 
-    private function getTagNameFromView(string $view)
+    private function getTagNameFromTemplate($template)
     {
-        $startPos = strpos($view, 'riot-');
+        $this->assertTemplate($template);
 
-        return substr($view, $startPos + 5);
+        $startPos = strpos($template, 'riot-');
+        $endPos = strpos($template, '.twig');
+
+        return substr($template, $startPos + 5, $endPos - $startPos - 5);
     }
 
-    private function extractJsFunction($template, $view)
+    private function assertTagName($tagName)
+    {
+        if (!is_string($tagName)) {
+            throw new \InvalidArgumentException('Riot tag name should be a string. got ' . gettype($tagName));
+        }
+    }
+
+    private function assertTemplate($template)
+    {
+        if (!is_string($template)) {
+            throw new \InvalidArgumentException('Riot template should be a string. got ' . gettype($template));
+        }
+    }
+
+    private function extractJsFunction($template, $tagName)
     {
         preg_match(
             '/<script .*type="text\/javascript"[^>]*>[\s]*(?<func>function.+\});?[\s]*<\/script>/is',
@@ -50,7 +93,7 @@ class RiotTag
         );
 
         if (!$matches['func']) {
-            throw new \RuntimeException('Riot tag javascript function could not be found for tag name: ' . $view);
+            throw new \RuntimeException('Riot tag javascript function could not be found for tag name: ' . $tagName);
         }
 
         return $matches['func'];

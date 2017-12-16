@@ -54,7 +54,7 @@
 
             if (self.status == 'OPEN') {
                 $.postJSON(
-                    '{{ path('command::mark-todo-as-done') }}',
+                    '{{ route('command::mark-todo-as-done') }}',
                     {
                         todo_id: self.id,
                         status: "DONE"
@@ -68,7 +68,7 @@
                 );
             } else {
                 $.postJSON(
-                    '{{ path('command::reopen-todo') }}',
+                    '{{ route('command::reopen-todo') }}',
                     {
                         todo_id: self.id
                     }
@@ -117,7 +117,7 @@
             var newDeadline = _selectedDeadlineDate;
 
             $.postJSON(
-                '{{ path('command::add-deadline-to-todo') }}',
+                '{{ route('command::add-deadline-to-todo') }}',
                 {
                     todo_id: self.id,
                     user_id: context.app.userId,
@@ -151,7 +151,7 @@
             var newReminder = _selectedReminderDate;
 
             $.postJSON(
-                '{{ path('command::add-reminder-to-todo') }}',
+                '{{ route('command::add-reminder-to-todo') }}',
                 {
                     todo_id: self.id,
                     user_id: context.app.userId,

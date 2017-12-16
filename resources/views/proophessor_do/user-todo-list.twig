@@ -1,4 +1,4 @@
-{% extends "default/base.html.twig" %}
+{% extends "proophessor_do/base.twig" %}
 {% block content %}
 {% if user is empty %}
     <h1>User cannot be found!</h1>
@@ -17,8 +17,8 @@
 {% block page_js %}
     {% if user is not empty %}
     <script>
-        {{ riotTag('default/riot-user-todo-list.html.twig') }}
-        {{ riotTag('default/riot-user-todo.html.twig') }}
+        {{ riotTag('proophessor_do/riot-user-todo-list.twig') }}
+        {{ riotTag('proophessor_do/riot-user-todo.twig') }}
 
         var UserTodoList = ProophRiot.App.create({
             userId : '{{ user.id }}',

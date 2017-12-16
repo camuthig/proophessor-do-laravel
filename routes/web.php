@@ -34,7 +34,10 @@ Route::get('/user-registration', [
 
 Route::get('/user-todo-list/{userId}', [
     'as' => 'page::user-todo-list',
-    function () {
-        // @TODO Implement me
-    }
+    'uses' => 'UserTodoListController@get'
+]);
+
+Route::get('/user-todo-form/{userId}/new-todo', [
+    'as' => 'page::user-todo-form',
+    'uses' => 'UserTodoFormController@get'
 ]);

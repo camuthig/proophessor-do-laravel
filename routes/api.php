@@ -18,5 +18,34 @@ Route::middleware(['command_name'])->group(function () {
         'as' => 'command::register-user',
         'uses' => 'ApiCommandController@postAction'
     ]);
-});
 
+    Route::post('/commands/add-deadline-to-todo', [
+        'as' => 'command::add-deadline-to-todo',
+        'uses' => 'ApiCommandController@postAction'
+    ]);
+
+    Route::post('/commands/add-reminder-to-todo', [
+        'as' => 'command::add-reminder-to-todo',
+        'uses' => 'ApiCommandController@postAction'
+    ]);
+
+    Route::post('/commands/mark-todo-as-done', [
+        'as' => 'command::mark-todo-as-done',
+        'uses' => 'ApiCommandController@postAction'
+    ]);
+
+    Route::post('/commands/mark-todo-as-expired', [
+        'as' => 'command::mark-todo-as-expired',
+        'uses' => 'ApiCommandController@postAction'
+    ]);
+
+    Route::post('/commands/reopen-todo', [
+        'as' => 'command::reopen-todo',
+        'uses' => 'ApiCommandController@postAction'
+    ]);
+
+    Route::post('/commands/post-todo', [
+        'as' => 'command::post-todo',
+        'uses' => 'ApiCommandController@postAction'
+    ]);
+});

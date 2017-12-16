@@ -24,6 +24,7 @@
         "laravel/tinker": "~1.0",
         "prooph/event-sourcing": "^5.2",
         "prooph/event-store-bus-bridge": "^3.0",
+        "rcrowe/twigbridge": "^0.9.5",
         "zendframework/zend-validator": "^2.10"
     },
     "require-dev": {

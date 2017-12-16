@@ -1,12 +1,12 @@
-@extends('proophessor_do.base')
+{% extends "proophessor_do/base.twig" %}
 
-@section('content')
+{% block content %}
     <div class="jumbotron">
-        <h1 class="text-center">Welcome to proophessor-do-laravel</h1>
+        <h1 class="text-center">Welcome to proophessor-do-symfony</h1>
     </div>
     <div class="row">
         <div class="col-md-12">
-            <h2>Powered by Laravel and prooph components</h2>
+            <h2>Powered by Symfony and prooph components</h2>
             <p>
                 This is a simple Todo application showing you the integration of <a href="http://prooph.github.io/proophessor/">prooph components</a> into a Symfony web application.
             </p>
@@ -28,4 +28,4 @@
             </ul>
         </div>
     </div>
-@endsection
+{% endblock %}

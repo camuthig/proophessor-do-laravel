@@ -1,10 +1,10 @@
-{% extends "default/base.html.twig" %}
+{% extends "proophessor_do/base.twig" %}
 {% block content %}
 
 {% if invalidUser %}
     <h1>Something went wrong! We can't find the user who should be responsible for the new Todo.</h1>
     <p class="alert alert-warning">
-        <strong>Please try again by selecting a user from the <a href="{{ path('page::user-list') }}">user list</a>!</strong>
+        <strong>Please try again by selecting a user from the <a href="{{ route('page::user-list') }}">user list</a>!</strong>
     </p>
 {% else %}
     <h1>Add a new Todo</h1>
@@ -15,7 +15,7 @@
 {% block page_js %}
     {% if not invalidUser %}
     <script>
-        {{ riotTag('default/riot-user-todo-form.html.twig') }}
+        {{ riotTag('proophessor_do/riot-user-todo-form.twig') }}
 
         var UserTodoForm = ProophRiot.App.create({
             userId : '{{ user.id }}',
