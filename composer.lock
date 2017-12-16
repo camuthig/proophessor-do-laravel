@@ -67,12 +67,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/camuthig/event-store-laravel-package.git",
-                "reference": "ef0a845f1abb73c7e4d5dbd8b72b9f4068825a5b"
+                "reference": "c4a7589185fb8ab689c9531237b2ed99eafb1a4e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/camuthig/event-store-laravel-package/zipball/ef0a845f1abb73c7e4d5dbd8b72b9f4068825a5b",
-                "reference": "ef0a845f1abb73c7e4d5dbd8b72b9f4068825a5b",
+                "url": "https://api.github.com/repos/camuthig/event-store-laravel-package/zipball/c4a7589185fb8ab689c9531237b2ed99eafb1a4e",
+                "reference": "c4a7589185fb8ab689c9531237b2ed99eafb1a4e",
                 "shasum": ""
             },
             "require": {
@@ -111,7 +111,7 @@
                 "source": "https://github.com/camuthig/event-store-laravel-package/tree/master",
                 "issues": "https://github.com/camuthig/event-store-laravel-package/issues"
             },
-            "time": "2017-11-20T05:13:35+00:00"
+            "time": "2017-12-16T08:16:48+00:00"
         },
         {
             "name": "camuthig/service-bus-laravel-package",
