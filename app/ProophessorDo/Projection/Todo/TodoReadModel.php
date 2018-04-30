@@ -23,70 +23,58 @@ final class TodoReadModel extends AbstractReadModel
      */
     private $connection;
 
+    /** @var \Doctrine\DBAL\Platforms\AbstractPlatform */
+    private $platform;
+
+
     public function __construct(Connection $connection)
     {
         $this->connection = $connection;
+        $this->platform = $this->connection->getDatabasePlatform();
     }
 
+    /**
+     * @throws \Doctrine\DBAL\DBALException
+     */
     public function init(): void
     {
         $tableName = Table::TODO;
 
-        $sql = <<<EOT
-CREATE TABLE `$tableName` (
-  `id` varchar(36) COLLATE utf8_unicode_ci NOT NULL,
-  `assignee_id` varchar(36) COLLATE utf8_unicode_ci NOT NULL,
-  `text` longtext COLLATE utf8_unicode_ci NOT NULL,
-  `status` varchar(7) COLLATE utf8_unicode_ci NOT NULL,
-  `deadline` varchar(30) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `reminder` varchar(30) COLLATE utf8_unicode_ci DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `idx_a_status` (`assignee_id`,`status`),
-  KEY `idx_status` (`status`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-EOT;
+        $schema = new \Doctrine\DBAL\Schema\Schema();
 
-        $statement = $this->connection->prepare($sql);
-        $statement->execute();
+        $table = $schema->createTable($tableName);
+        $table->addColumn('id', 'string', ['unsigned' => true, 'length' => 36, 'notnull' => true]);
+        $table->addColumn('assignee_id', 'string', ['unsigned' => true, 'length' => 36, 'notnull' => true]);
+        $table->addColumn('text', 'text', ['notnull' => true]);
+        $table->addColumn('status', 'string', ['length' => 7, 'notnull' => true]);
+        $table->addColumn('deadline', 'string', ['length' => 30, 'default' => null]);
+        $table->addColumn('reminder', 'string', ['length' => 30, 'default' => null]);
+        $table->setPrimaryKey(['id']);
+        $table->addIndex(['assignee_id', 'status'], 'idx_a_status');
+        $table->addIndex(['status'], 'idx_status');
+
+        foreach ($schema->toSql($this->platform) as $query) {
+            $statement = $this->connection->prepare($query);
+            $statement->execute();
+        }
     }
 
     public function isInitialized(): bool
     {
-        $tableName = Table::TODO;
-
-        $sql = "SHOW TABLES LIKE '$tableName';";
-
-        $statement = $this->connection->prepare($sql);
-        $statement->execute();
-
-        $result = $statement->fetch();
-
-        if (false === $result) {
-            return false;
-        }
-
-        return true;
+        return $this->connection->getSchemaManager()->tablesExist([Table::TODO]);
     }
 
+    /**
+     * @throws \Doctrine\DBAL\DBALException
+     */
     public function reset(): void
     {
-        $tableName = Table::TODO;
-
-        $sql = "TRUNCATE TABLE '$tableName';";
-        EOT;
-
-        $statement = $this->connection->prepare($sql);
-        $statement->execute();
+        $this->connection->executeUpdate($this->platform->getTruncateTableSQL(Table::TODO, true));
     }
 
     public function delete(): void
     {
-        $tableName = Table::TODO;
-
-        $sql = "DROP TABLE $tableName;";
-
-        $statement = $this->connection->prepare($sql);
-        $statement->execute();
+        $this->connection->getSchemaManager()->dropTable(Table::TODO);
     }
 
     protected function insert(array $data): void

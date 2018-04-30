@@ -13,6 +13,7 @@ declare(strict_types=1);
 namespace Prooph\ProophessorDo\Projection\User;
 
 use Doctrine\DBAL\Connection;
+use Doctrine\DBAL\Platforms\PostgreSqlPlatform;
 use Prooph\EventStore\Projection\AbstractReadModel;
 use Prooph\ProophessorDo\Projection\Table;
 
@@ -23,67 +24,55 @@ final class UserReadModel extends AbstractReadModel
      */
     private $connection;
 
+    /** @var \Doctrine\DBAL\Platforms\AbstractPlatform */
+    private $platform;
+
     public function __construct(Connection $connection)
     {
         $this->connection = $connection;
+        $this->platform = $this->connection->getDatabasePlatform();
     }
 
+    /**
+     * @throws \Doctrine\DBAL\DBALException
+     */
     public function init(): void
     {
         $tableName = Table::USER;
 
-        $sql = <<<EOT
-CREATE TABLE `$tableName` (
-  `id` varchar(36) COLLATE utf8_unicode_ci NOT NULL,
-  `name` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
-  `email` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-  `open_todos` int(11) NOT NULL DEFAULT '0',
-  `done_todos` int(11) NOT NULL DEFAULT '0',
-  `expired_todos` int(11) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-EOT;
+        $schema = new \Doctrine\DBAL\Schema\Schema();
 
-        $statement = $this->connection->prepare($sql);
-        $statement->execute();
+        $table = $schema->createTable($tableName);
+        $table->addColumn('id', 'string', ['unsigned' => true, 'length' => 36, 'notnull' => true]);
+        $table->addColumn('name', 'string', ['length' => 50, 'notnull' => true]);
+        $table->addColumn('email', 'string', ['length' => 100, 'notnull' => true]);
+        $table->addColumn('open_todos', 'integer', ['length' => 11, 'notnull' => true, 'default' => 0]);
+        $table->addColumn('done_todos', 'integer', ['length' => 11, 'notnull' => true, 'default' => 0]);
+        $table->addColumn('expired_todos', 'integer', ['length' => 32, 'notnull' => true, 'default' => 0]);
+        $table->setPrimaryKey(['id']);
+
+        foreach ($schema->toSql($this->platform) as $query) {
+            $statement = $this->connection->prepare($query);
+            $statement->execute();
+        }
     }
 
     public function isInitialized(): bool
     {
-        $tableName = Table::USER;
-
-        $sql = "SHOW TABLES LIKE '$tableName';";
-
-        $statement = $this->connection->prepare($sql);
-        $statement->execute();
-
-        $result = $statement->fetch();
-
-        if (false === $result) {
-            return false;
-        }
-
-        return true;
+        return $this->connection->getSchemaManager()->tablesExist([Table::USER]);
     }
 
+    /**
+     * @throws \Doctrine\DBAL\DBALException
+     */
     public function reset(): void
     {
-        $tableName = Table::USER;
-
-        $sql = "TRUNCATE TABLE $tableName;";
-
-        $statement = $this->connection->prepare($sql);
-        $statement->execute();
+        $this->connection->executeUpdate($this->platform->getTruncateTableSQL(Table::USER, true));
     }
 
     public function delete(): void
     {
-        $tableName = Table::USER;
-
-        $sql = "DROP TABLE $tableName;";
-
-        $statement = $this->connection->prepare($sql);
-        $statement->execute();
+        $this->connection->getSchemaManager()->dropTable(Table::USER);
     }
 
     protected function insert(array $data): void
