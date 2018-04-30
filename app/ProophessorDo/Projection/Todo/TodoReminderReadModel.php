@@ -23,65 +23,53 @@ final class TodoReminderReadModel extends AbstractReadModel
      */
     private $connection;
 
+    /** @var \Doctrine\DBAL\Platforms\AbstractPlatform */
+    private $platform;
+
+
     public function __construct(Connection $connection)
     {
         $this->connection = $connection;
+        $this->platform = $this->connection->getDatabasePlatform();
     }
 
+    /**
+     * @throws \Doctrine\DBAL\DBALException
+     */
     public function init(): void
     {
         $tableName = Table::TODO_REMINDER;
 
-        $sql = <<<EOT
-CREATE TABLE `$tableName` (
-  `todo_id` varchar(36) COLLATE utf8_unicode_ci NOT NULL,
-  `reminder` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
-  `status` varchar(10) COLLATE utf8_unicode_ci NOT NULL,
-  PRIMARY KEY (`todo_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-EOT;
+        $schema = new \Doctrine\DBAL\Schema\Schema();
 
-        $statement = $this->connection->prepare($sql);
-        $statement->execute();
+        $table = $schema->createTable($tableName);
+        $table->addColumn('todo_id', 'string', ['unsigned' => true, 'length' => 36, 'notnull' => true]);
+        $table->addColumn('reminder', 'string', ['length' => 30, 'notnull' => true]);
+        $table->addColumn('status', 'string', ['length' => 10, 'notnull' => true]);
+        $table->setPrimaryKey(['todo_id']);
+
+        foreach ($schema->toSql($this->platform) as $query) {
+            $statement = $this->connection->prepare($query);
+            $statement->execute();
+        }
     }
 
     public function isInitialized(): bool
     {
-        $tableName = Table::TODO_REMINDER;
-
-        $sql = "SHOW TABLES LIKE '$tableName';";
-
-        $statement = $this->connection->prepare($sql);
-        $statement->execute();
-
-        $result = $statement->fetch();
-
-        if (false === $result) {
-            return false;
-        }
-
-        return true;
+        return $this->connection->getSchemaManager()->tablesExist([Table::TODO_REMINDER]);
     }
 
+    /**
+     * @throws \Doctrine\DBAL\DBALException
+     */
     public function reset(): void
     {
-        $tableName = Table::TODO_REMINDER;
-
-        $sql = "TRUNCATE TABLE '$tableName';";
-        EOT;
-
-        $statement = $this->connection->prepare($sql);
-        $statement->execute();
+        $this->connection->executeUpdate($this->platform->getTruncateTableSQL(Table::TODO_REMINDER, true));
     }
 
     public function delete(): void
     {
-        $tableName = Table::TODO_REMINDER;
-
-        $sql = "DROP TABLE $tableName;";
-
-        $statement = $this->connection->prepare($sql);
-        $statement->execute();
+        $this->connection->getSchemaManager()->dropTable(Table::TODO_REMINDER);
     }
 
     protected function insert(array $data): void
@@ -98,6 +86,10 @@ EOT;
         );
     }
 
+    /**
+     * @param array $query
+     * @throws \Doctrine\DBAL\Exception\InvalidArgumentException
+     */
     protected function remove(array $query): void
     {
         $this->connection->delete(

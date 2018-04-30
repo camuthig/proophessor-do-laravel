@@ -33,6 +33,11 @@ class UserFinder
         return $this->connection->fetchAll(sprintf('SELECT * FROM %s', Table::USER));
     }
 
+    /**
+     * @param string $userId
+     * @return null|\stdClass
+     * @throws \Doctrine\DBAL\DBALException
+     */
     public function findById(string $userId): ?\stdClass
     {
         $stmt = $this->connection->prepare(sprintf('SELECT * FROM %s WHERE id = :user_id', Table::USER));
@@ -48,6 +53,11 @@ class UserFinder
         return $result;
     }
 
+    /**
+     * @param string $emailAddress
+     * @return null|\stdClass
+     * @throws \Doctrine\DBAL\DBALException
+     */
     public function findOneByEmailAddress(string $emailAddress): ?\stdClass
     {
         $stmt = $this->connection->prepare(sprintf('SELECT * FROM %s WHERE email = :email LIMIT 1', Table::USER));
@@ -63,6 +73,11 @@ class UserFinder
         return $result;
     }
 
+    /**
+     * @param string $todoId
+     * @return null|\stdClass
+     * @throws \Doctrine\DBAL\DBALException
+     */
     public function findUserOfTodo(string $todoId): ?\stdClass
     {
         $stmt = $this->connection->prepare(sprintf(

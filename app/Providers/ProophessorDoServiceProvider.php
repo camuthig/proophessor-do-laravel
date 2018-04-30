@@ -23,7 +23,7 @@ class ProophessorDoServiceProvider extends ServiceProvider
                 case 'mysql':
                     $driver = 'pdo_mysql';
                     break;
-                case 'postgres':
+                case 'pgsql':
                     $driver = 'pdo_pgsql';
             }
 
