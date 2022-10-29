@@ -1,5 +1,7 @@
 # ProophessorDo Laravel
 
+**Archived: This project is archived and not receiving updates.**
+
 A port of the ProophessorDo sample application built by the prooph organization
 using the Laravel framework.
 
